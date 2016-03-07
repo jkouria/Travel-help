@@ -75,7 +75,7 @@ src="http://maps.googleapis.com/maps/api/js">
 function initialize()
 {
   var mapProp = {
-    center: new google.maps.LatLng(17927053,59410688),
+    center: new google.maps.LatLng(17.927053,59.410688),
     zoom:9,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
