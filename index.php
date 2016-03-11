@@ -28,7 +28,7 @@
 				mytable = data;
 			} else console.log("No data returned");
 			document.getElementById('tablePrint').innerHTML = mytable;
-			google.maps.event.addDomListener(window, 'load', initialize);
+			//google.maps.event.addDomListener(window, 'load', initialize);
 		});
 	});
 	}

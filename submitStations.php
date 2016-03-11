@@ -18,35 +18,22 @@ function httpGet($url)
 }
 
 $result = httpGet($slstationAPIURL);
-
-//$result = '{"StatusCode":0,"Message":null,"ExecutionTime":0,"ResponseData":[{"Name":"Rotebro station (Sollentuna)","SiteId":"9503","Type":"Station","X":"17914009","Y":"59476489"},{"Name":"Häggviks station (Sollentuna)","SiteId":"9505","Type":"Station","X":"17933408","Y":"59444569"},{"Name":"Norrvikens station (Sollentuna)","SiteId":"9504","Type":"Station","X":"17923870","Y":"59458124"},{"Name":"Sollentuna station (Sollentuna)","SiteId":"9506","Type":"Station","X":"17948186","Y":"59429592"},{"Name":"Helenelunds station (Sollentuna)","SiteId":"9507","Type":"Station","X":"17962263","Y":"59409466"},{"Name":"Rotebro station östra (Sollentuna)","SiteId":"9503","Type":"Station","X":"17914009","Y":"59476489"},{"Name":"Ormsta station (Vallentuna)","SiteId":"9625","Type":"Station","X":"18079285","Y":"59546713"},{"Name":"Kårsta station (Vallentuna)","SiteId":"9620","Type":"Station","X":"18266962","Y":"59656939"},{"Name":"Stationsvägen (Vallentuna)","SiteId":"2560","Type":"Station","X":"18168521","Y":"59624497"},{"Name":"Vallentuna station (Vallentuna)","SiteId":"9626","Type":"Station","X":"18079510","Y":"59533256"}]}';
 $re = json_decode($result,true);
-//print_r($re);
 
-//$manage_array = json_encode($re, true);
 $manage_array = $re;
-//echo '*******************************';
-//print_r($manage_array);
 
+//fault handling in submitRealTimeTraffic, don't need to test for StatusCode == 0
 //echo $manage_array['StatusCode'];
 
 $site_array = $manage_array['ResponseData'];
-//echo '*******************************';
-//print_r($site_array);
-
 $siteidarray = $site_array['0'];
-//echo '*******************************';
-//print_r($siteidarray);
+
+$lon = substr($siteidarray['X'],0,2) . "." . substr($siteidarray['X'],2);
+//print_r($lon);
+$lat = substr($siteidarray['Y'],0,2) . "." . substr($siteidarray['Y'],2);
+//print_r($lat);
+
 
 $siteid = $siteidarray['SiteId'];
-echo $siteid;
-//$siteidarrayid = $siteid['SiteId'];
-//echo '*******************************';
-//print_r($siteid);
-
-
-//echo $manage;
-//echo "Result for " . $slstationAPIURL . " is " . $result;
-//echo '{"StatusCode":0,"Message":null,"ExecutionTime":0,"ResponseData":[{"Name":"Rotebro station (Sollentuna)","SiteId":"9503","Type":"Station","X":"17914009","Y":"59476489"},{"Name":"Häggviks station (Sollentuna)","SiteId":"9505","Type":"Station","X":"17933408","Y":"59444569"},{"Name":"Norrvikens station (Sollentuna)","SiteId":"9504","Type":"Station","X":"17923870","Y":"59458124"},{"Name":"Sollentuna station (Sollentuna)","SiteId":"9506","Type":"Station","X":"17948186","Y":"59429592"},{"Name":"Helenelunds station (Sollentuna)","SiteId":"9507","Type":"Station","X":"17962263","Y":"59409466"},{"Name":"Rotebro station östra (Sollentuna)","SiteId":"9503","Type":"Station","X":"17914009","Y":"59476489"},{"Name":"Ormsta station (Vallentuna)","SiteId":"9625","Type":"Station","X":"18079285","Y":"59546713"},{"Name":"Kårsta station (Vallentuna)","SiteId":"9620","Type":"Station","X":"18266962","Y":"59656939"},{"Name":"Stationsvägen (Vallentuna)","SiteId":"2560","Type":"Station","X":"18168521","Y":"59624497"},{"Name":"Vallentuna station (Vallentuna)","SiteId":"9626","Type":"Station","X":"18079510","Y":"59533256"}]}'
-//echo '{"1": 1, "2": 2, "3": {"4": 4, "5": {"6": 6}}}'
+echo json_encode(array($siteid, $lon, $lat));
 ?>
