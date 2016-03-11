@@ -16,15 +16,19 @@
 	
 	$.get("submitStations.php?name=" + stn_id, function(data) {
 		if (data != null) {
-			siteid = data;
+			var myobj = JSON.parse(data);
+			siteid = myobj[0];
+			document.getElementById('lon').innerHTML = myobj[1];
+			document.getElementById('lat').innerHTML = myobj[2];   
 		} else console.log("No data returned");
 	
-		$.get("submitRealTimeTraffic.php?name=" + siteid, function(data) {
+		$.get("submitRealTimeTraffic.php?id=" + siteid, function(data) {
 	
 			if (data != null) {
 				mytable = data;
 			} else console.log("No data returned");
 			document.getElementById('tablePrint').innerHTML = mytable;
+			google.maps.event.addDomListener(window, 'load', initialize);
 		});
 	});
 	}
@@ -75,7 +79,7 @@ src="http://maps.googleapis.com/maps/api/js">
 function initialize()
 {
   var mapProp = {
-    center: new google.maps.LatLng(59.410688,17.927053),
+    center: new google.maps.LatLng(document.getElementById('lon'),document.getElementById('lat')),
     zoom:9,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -83,7 +87,7 @@ function initialize()
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp)
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
         </script>
             <body>
         <div align="center"id="googleMap" style="width:400px;height:300px;"></div>

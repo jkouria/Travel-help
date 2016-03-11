@@ -4,8 +4,8 @@ $apiurl = "https://api.eu.apim.ibmcloud.com/johannrodinseibmcom-myteamspace/sb/r
 $apiclient_id = "549d2618-0ffd-4720-b139-4b2c69a4d223";
 $apiclient_secret = "cD5sO6gW5aB0dV6nH5lR6oP5wQ5kQ5rF3yM2cA0jJ2oO2vM2sX";
 //$apiclient_secret = "bQ0uG5oQ6qL2oS2rQ1sU7xG5vM3eR6oU0uD1qT5vK4hW2tE2xT";		
-//$slstationAPIURL = $apiurl . "?client_id=" . $apiclient_id . "&client_secret=" . $apiclient_secret . "&searchstring=" . $_GET['name'];
-$slstationAPIURL = $apiurl . $_GET['name'];
+//$slstationAPIURL = $apiurl . "?client_id=" . $apiclient_id . "&client_secret=" . $apiclient_secret . "&searchstring=" . $_GET['id'];
+$slstationAPIURL = $apiurl . $_GET['id'];
 
 function build_table_row($data)
 {
