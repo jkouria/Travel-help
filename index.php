@@ -7,6 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="style.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<scritp src="http://maps.googleapis.com/maps/api/js"></script>
 	
 	<script>
 	function loadStations() {
@@ -28,10 +29,23 @@
 				mytable = data;
 			} else console.log("No data returned");
 			document.getElementById('tablePrint').innerHTML = mytable;
-			//google.maps.event.addDomListener(window, 'load', initialize);
+			google.maps.event.addDomListener(window, 'load', initialize);
 		});
 	});
 	}
+	
+	function initialize()
+	{
+  		var mapProp = {
+    	center: new google.maps.LatLng(document.getElementById('lon'),document.getElementById('lat')),
+    	zoom:9,
+    	mapTypeId: google.maps.MapTypeId.ROADMAP
+  		};
+  
+  		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp)
+	}
+
+        </script>
 	</script>
 </head>
 <body>
@@ -70,26 +84,11 @@ src="images/dgc.gif"><img
 src="images/dg8.gif" name="se1"><img 
 src="images/dg8.gif" name="se2"><img 
 src="images/dgam.gif" name="ampm">
-            <head>
-            <script
-src="http://maps.googleapis.com/maps/api/js">
-        </script>
+           
+
 	        
-            <script>
-function initialize()
-{
-  var mapProp = {
-    center: new google.maps.LatLng(document.getElementById('lon'),document.getElementById('lat')),
-    zoom:9,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp)
-}
-
-
-        </script>
-            <body>
+         
+<body>
         <div align="center"id="googleMap" style="width:400px;height:300px;"></div>
       </div>
 	  <script type="text/javascript">
@@ -142,6 +141,7 @@ window.onload=function(){
   </fieldset>
   <fieldset>
 	<div id="tablePrint"> </div>
+	<br>
 	<div id="lat"> Lat</div>
 	<div id="lon"> Lon</div>
   </fieldset>
