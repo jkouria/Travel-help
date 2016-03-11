@@ -142,6 +142,8 @@ window.onload=function(){
   </fieldset>
   <fieldset>
 	<div id="tablePrint"> </div>
+	<div id="lat"> Lat</div>
+	<div id="lon"> Lon</div>
   </fieldset>
 </form>
  
